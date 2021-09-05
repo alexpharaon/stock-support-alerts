@@ -90,10 +90,10 @@ def run_regression(clm_labels: np.array, troughs_or_peaks: dict, troughs: bool, 
     print(stock_data.iloc[-1].loc['Adj Close'])
 
     if troughs and (1+deviation)*Y_pred > stock_data.iloc[-1].loc['Adj Close'] > (1-deviation)*Y_pred:
-      send_sms(text=f"{ticker} reached a strong support line yesterday. You may want to consider buying today.", recipients=['+447533603731','+447384241860'])
+      send_sms(text=f"{ticker} reached a strong support line yesterday. You may want to consider buying today.", recipients=['+4412345678'])
 
     elif troughs and (1+deviation+0.02)*Y_pred > stock_data.iloc[-1].loc['Adj Close'] >= (1+deviation)*Y_pred:
-      send_sms(text=f"{ticker} is approaching a strong support line. You may want to consider buying soon.", recipients=['+447533603731','+447384241860'])
+      send_sms(text=f"{ticker} is approaching a strong support line. You may want to consider buying soon.", recipients=['+4412345678'])
 
 def send_sms(text: str, recipients: list):
   for recipient in recipients:
