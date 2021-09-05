@@ -34,15 +34,15 @@ def get_zigzags(close: pd.Series(dtype='float64')):
   ts_pivots = pd.Series(close.values, index=close.index)
   
   ts_pivots = ts_pivots[pivots != 0]
-  ts_pivots = ts_pivots[1:]
-  ts_pivots = ts_pivots[:-1]
+  ts_pivots = ts_pivots[1:] # removes first point in timeseries arbitrarily being assigned as a peak
+  ts_pivots = ts_pivots[:-1] # removes first point in timeseries arbitrarily being assigned as a stationary point
 
   # Seperate peaks and troughs
   peaks = {} # peak_value: peak_index
   troughs = {}
 
   for i in range(len(ts_pivots.values)):
-    if (i % 2) == 0: # even; ie. peak
+    if (i % 2) == 0: # even; ie. trough (since first peak removed above)
       troughs[ts_pivots.values[i]] = ts_pivots.index[i]
     else:
       peaks[ts_pivots.values[i]] = ts_pivots.index[i]
